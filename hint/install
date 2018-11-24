@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 set -ex
 
-TEMP_DIR="$(mktemp -d)"
+cd "$(mktemp -d)"
 
-cd $TEMP_DIR
+git clone https://github.com/pietvanzoen/hint.git .
 
-git clone https://github.com/pietvanzoen/hint.git
-
-cd hint
-
-./install
+rake
