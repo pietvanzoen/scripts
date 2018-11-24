@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 cd "$(mktemp -d)"
 
-git clone https://github.com/pietvanzoen/hint.git .
+echo "Pulling files"
+git clone --depth 1 --quiet https://github.com/pietvanzoen/hint.git .
 
 rake
