@@ -29,7 +29,7 @@ main() {
   echo "==> Updating README with new version"
   update_readme $new_tag
   git add README.md
-  git commit -m "ci: Update README with new version $new_tag."
+  git commit -m "ci: Update README with new version $new_tag." || true
 
   echo "==> Creating tag"
   git tag -a "$new_tag" -m "$(echo -e "$new_tag\n\n$message")"
