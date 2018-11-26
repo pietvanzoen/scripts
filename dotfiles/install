@@ -6,6 +6,6 @@ git clone --depth 1 https://github.com/pietvanzoen/dotfiles.git "$HOME/dotfiles"
 
 cd "$HOME/dotfiles"
 
-./_scripts/bootstrap
+CONFIRM_ALL=true ./_scripts/bootstrap
 
 ./install
