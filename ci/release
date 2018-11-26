@@ -5,11 +5,11 @@
 # version.
 set -e
 
-release_branch="master"
+RELEASE_BRANCH="${RELEASE_BRANCH:-master}"
 
 main() {
-  if [[ "$TRAVIS_BRANCH" != "$release_branch" ]]; then
-    echo "Not on release branch. Exiting release."
+  if [[ "$TRAVIS_BRANCH" != "$RELEASE_BRANCH" ]]; then
+    echo "Not on release branch '$RELEASE_BRANCH'. Exiting."
     exit 0
   fi
 
@@ -58,7 +58,7 @@ generate_next_tag() {
   minor="$(echo "$latest_version" | cut -d. -f 2)"
   patch="$(echo "$latest_version" | cut -d. -f 3)"
 
-  log_cmd="git log --date=short $latest_tag..origin/$release_branch"
+  log_cmd="git log --date=short $latest_tag..origin/$RELEASE_BRANCH"
 
   if [[ "$($log_cmd --pretty="%s %b")" == *"BREAKING CHANGE"* ]]; then
     bump_type="breaking"
@@ -90,7 +90,7 @@ generate_next_tag() {
 }
 
 generate_tag_message() {
-  git log '--pretty=- %s [%h]' --date=short "$latest_tag"..origin/$release_branch | grep -E "^- feat|^- fix" | sort
+  git log '--pretty=- %s [%h]' --date=short "$latest_tag"..origin/$RELEASE_BRANCH | grep -E "^- feat|^- fix" | sort
 }
 
 update_readme() {
