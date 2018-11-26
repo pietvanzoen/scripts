@@ -4,5 +4,10 @@ addons:
     packages:
     - shellcheck
 script:
-  - shellcheck */*
+- shellcheck */*
+after_script:
+- "./ci/release"
 sudo: false
+env:
+  global:
+    secure: gPdao7daGOarvewmRw26nKFebKxdELML2ccQOTyFMC1/sB9Rhe7+SXg26U7oQS9mYqUtpxuAwgfKyiwXn7szZfuxSgjo4SNM02VMfnwZlIQOm+PMdRxQiPDfcKbn2ZrKp7tja8sDOPujTIJz27jTpbzTLUVYSVVrb0a0UHhD2qJrYxFugKaRFy9JsaoBpjpzStPk2PUXcFG2GbwP/RzV87PnVYGuHs380kZrXRP90L6Y6iWy4v2UsxxaH5fAC+kMFKB8pPGBQReoP4McG90oJL9Cngu2+fMWuPwpyTi/h7FvgoPB/fSX8KNL/4l7Gx1sh4qgIXsns3AtcOnQDO8EokxZMKGP/BmgnRqsLavwqKuuXX38G8v49sj/5xYj1D70NI+A+1TMwlSIrPt3vlARjFWj//h6aTxSVE9LkFuuF8X42OLvYkm2IxAiw5YZ59T92Un7RRD0Jc1Wyg4ajzs2BdydFULUPCsFP8HtZWpgI1AoRC19ChQphLpnR7Td+wd84+bQPOOynIm80ii2OuymwnXhZSuP5PbKjUFEaWw0Wipz9VuuoY1osqO0ykT7rJ6BVzRjLChzRhRmfpLiZcN8SsAxo066ufDfMUanbWwE1kDiE/LjfRnIalPv6pKiuyj76rq5jvux+jwrJcVAC9lqes4GPhDGk4BM3cvUSTPMCDw=
