@@ -90,7 +90,7 @@ generate_next_tag() {
 }
 
 generate_tag_message() {
-  git log '--pretty=- %s [%h]' --date=short "$latest_tag"..origin/$RELEASE_BRANCH | grep -E "^- feat|^- fix" | sort
+  git log '--pretty=- %s [%h]' --date=short "$latest_tag..origin/$RELEASE_BRANCH" | grep -E "^- feat|^- fix" | sort
 }
 
 update_readme() {
