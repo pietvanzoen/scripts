@@ -8,6 +8,9 @@ set -e
 RELEASE_BRANCH="${RELEASE_BRANCH:-master}"
 
 main() {
+  echo "Current branch: $TRAVIS_BRANCH"
+  echo "Release branch: $RELEASE_BRANCH"
+
   if [[ "$TRAVIS_BRANCH" != "$RELEASE_BRANCH" ]]; then
     echo "Not on release branch '$RELEASE_BRANCH'. Exiting."
     exit 0
