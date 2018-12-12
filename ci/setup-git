@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -ex
+
+git remote set-url origin "https://$GITHUB_TOKEN:x-oauth-basic@github.com/$TRAVIS_REPO_SLUG"
+git checkout "$TRAVIS_BRANCH"
+git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+git fetch --all
+git config user.email "hi+pietbot@pietvanzoen.com"
+git config user.name "pietbot"
