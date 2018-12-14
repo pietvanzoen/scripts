@@ -109,8 +109,9 @@ update_readme() {
   sed -i "s/$latest_tag/$new_tag/g" README.md
 }
 update_package_json() {
-  local new_tag="$1"
-  sed -i "s|\"version\": \"$latest_tag\"|\"version\": \"$new_tag\"|" package.json
+  local latest="$(echo "$latest_tag" | tr -d v)"
+  local new_tag="$(echo "$1" | tr -d v)"
+  sed -i "s|\"version\": \"$latest\"|\"version\": \"$new_tag\"|" package.json
 }
 
 setup_ci_git() {
