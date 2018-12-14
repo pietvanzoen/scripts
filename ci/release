@@ -33,7 +33,14 @@ main() {
   echo "==> Updating README with new version"
   update_readme "$new_tag"
   git add README.md
-  git commit -m "ci: Update README with new version $new_tag." || true
+
+  if [[ -e "./package.json" ]]; then
+    echo "==> Updating package.json with new version"
+    update_package_json "$new_tag"
+    git add package.json
+  fi
+
+  git commit -m "ci: update files with new version $new_tag" || true
 
   echo "==> Creating tag"
   # shellcheck disable=SC1117
@@ -100,6 +107,10 @@ generate_tag_message() {
 update_readme() {
   local new_tag="$1"
   sed -i "s/$latest_tag/$new_tag/g" README.md
+}
+update_package_json() {
+  local new_tag="$1"
+  sed -i "s|\"version\": \"$latest_tag\"|\"version\": \"$new_tag\"|" package.json
 }
 
 setup_ci_git() {
