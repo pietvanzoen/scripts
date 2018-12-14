@@ -109,8 +109,10 @@ update_readme() {
   sed -i "s/$latest_tag/$new_tag/g" README.md
 }
 update_package_json() {
-  local latest="$(echo "$latest_tag" | tr -d v)"
-  local new_tag="$(echo "$1" | tr -d v)"
+  local latest
+  local new_tag
+  latest="$(echo "$latest_tag" | tr -d v)"
+  new_tag="$(echo "$1" | tr -d v)"
   sed -i "s|\"version\": \"$latest\"|\"version\": \"$new_tag\"|" package.json
 }
 
