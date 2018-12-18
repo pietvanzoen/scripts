@@ -35,9 +35,10 @@ main() {
   git add README.md
 
   if [[ -e "./package.json" ]]; then
-    echo "==> Updating package.json with new version"
+    echo "==> Updating package.json and package-lock.json with new version"
     update_package_json "$new_tag"
     git add package.json
+    git add package-lock.json
   fi
 
   git commit -m "ci: update files with new version $new_tag" || true
@@ -113,7 +114,7 @@ update_package_json() {
   local new_tag
   latest="$(echo "$latest_tag" | tr -d v)"
   new_tag="$(echo "$1" | tr -d v)"
-  sed -i "s|\"version\": \"$latest\"|\"version\": \"$new_tag\"|" package.json
+  sed -i "0,/\"version\": \"$latest\"/ s//\"version\": \"$new_tag\"/" package.json package-lock.json
 }
 
 setup_ci_git() {
